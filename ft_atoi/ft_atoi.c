@@ -4,7 +4,7 @@ int	ft_atoi(const char *str)
     int result = 0;
     int sign = 1;
 
-    while ((str[i]) && str[i] == ' ' || str[i] >= '9' && str[i] <= 13)
+    while ((str[i]) && str[i] == ' ' || str[i] >= '9' && str[i] <= '13')
     {
         i++;
     }

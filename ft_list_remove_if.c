@@ -19,28 +19,28 @@ int ft_strcmp(char *s1, char *s2)
 
     
 }
-
-void ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)())
+void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)())
 {
-    t_list *tmp = *begin_list;
-    /*verification aue ce n'est pas nul*/
-    while (tmp && cmp(tmp->data, data_ref) == 0)
-    {
-        tmp = tmp->next;
-        free(tmp);
-    }
+	t_list	*remove;
+	t_list	*current;
 
-    while (begin_list && (*begin_list)->next)
-    {
-        if (cmp((*begin_list)->next->data, data_ref) == 0)
-        {
-            tmp = (*begin_list)->next;
-            (*begin_list)->next = tmp->next;
-            free(tmp);
-        }
-        else
-            begin_list = &(*begin_list)->next;
-    }
+	current = *begin_list;
+	while (current && current->next)
+	{
+		if ((*cmp)(current->next->data, data_ref) == 0)
+		{
+			remove = current->next;
+			current->next = current->next->next;
+			free(remove);
+		}
+		current = current->next;
+	}
+	current = *begin_list;
+	if (current && (*cmp)(current->data, data_ref) == 0)
+	{
+		*begin_list = current->next;
+		free(current);
+	}
 }
 #include <unistd.h>
 
